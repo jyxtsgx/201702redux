@@ -5,7 +5,7 @@ export default class MessageList extends Component{
         return (
             <ul>
                 {
-                    this.props.messages.map((message,index)=><Message message={message}/>)
+                    this.props.messages.map((message,index)=><Message key={index}  message={message} index={index}/>)
                 }
             </ul>
         )
