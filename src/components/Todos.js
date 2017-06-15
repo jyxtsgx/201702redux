@@ -32,8 +32,18 @@ class Todos extends Component{
 //connect有两个参数 一个负责输入 一个负责输出
 //把store的状态对象映射为当前组件属性 参数是state tree
 //返回值是传入此组件的属性对象
+// {todos:[],filter:'all'}
 let mapStateToProps = state=>(
-    {todos:state.todos}
+    {todos:state.todos.filter(todo=>{
+        switch(state.filter){
+            case 'active':
+                return !todo.completed;
+            case 'completed':
+                return todo.completed;
+            default:
+                return true;
+        }
+    })}
 )
 //输出 dispatch=store.dispatch
 let mapDispatchToProps = dispatch => (
