@@ -22,7 +22,7 @@ class Todos extends Component{
 let mapStateToProps = state=>(
     {todos:state.todos}
 )
-//输出
+//输出 dispatch=store.dispatch
 let mapDispatchToProps = dispatch => (
     {
         addTodo:(content)=>dispatch({type:actionTypes.ADD_TODO,content})
