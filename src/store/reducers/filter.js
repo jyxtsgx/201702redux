@@ -1,5 +1,5 @@
 import * as actionTypes from '../action-types';
-export default  function(state={},action){
+export default  function(state='all',action={}){
     switch (action.type){
         //改变过滤器的类型
         case actionTypes.CHANGE_FILTER:
