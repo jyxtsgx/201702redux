@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import * as actionTypes from '../store/action-types';
-import {connect} from 'react-redux';
+import {connect} from '../react-redux';
 /**
  * 1. UI组件 木偶 傻瓜组件
  * 2. 没有状态
