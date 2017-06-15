@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import * as actionTypes from '../store/action-types';
 import {connect} from '../react-redux';
+import {bindActionCreators} from '../redux';
 /**
  * 1. UI组件 木偶 傻瓜组件
  * 2. 没有状态
@@ -20,8 +21,26 @@ class Counter extends Component{
 //把状态映射为属性对象
 let mapStateToProps = state=>({number:state})
 //把dispatch方法映射为属性对象
-let mapDispatchToProps = dispatch=>({
+/*let mapDispatchToProps = dispatch=>({
     add:()=>dispatch({type:actionTypes.ADD}),
     sub:()=>dispatch({type:actionTypes.SUB})
-})
+})*/
+let actions = {
+    add(){
+        return {type:actionTypes.ADD}
+    },
+    sub(){
+        return {type:actionTypes.SUB}
+    }
+}
+/*let actions = {
+    add(){
+        dispatch({type:actionTypes.ADD});
+    },
+    sub(){
+        dispatch({type:actionTypes.SUB});
+    }
+}*/
+
+let mapDispatchToProps = dispatch=>bindActionCreators(actions,dispatch);
 export default  connect(mapStateToProps,mapDispatchToProps)(Counter);

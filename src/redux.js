@@ -22,5 +22,11 @@ let createStore = (reducer) => {
       dispatch
   }
 }
-
-export {createStore}
+let bindActionCreators = (actions,dispatch)=>{
+    let result = {};
+    for(let key in actions){
+        result[key] = ()=> dispatch(actions[key]());
+    }
+    return result;
+}
+export {createStore,bindActionCreators}
