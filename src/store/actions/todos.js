@@ -12,6 +12,12 @@ export default {
             type:actionTypes.DEL_TODO,
             id
         }
+    },
+    toggle(id){
+        return {
+            type:actionTypes.TOGGLE_TODO,
+            id
+        }
     }
 }
 

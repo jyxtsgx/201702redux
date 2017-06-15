@@ -18,7 +18,7 @@ class Todos extends Component{
                 <input type="text" onKeyDown={this.handleKeyDown}/>
                 <ul>
                     {
-                        this.props.todos.map((todo,index)=><li key={index}>{todo.content}</li>)
+                        this.props.todos.map((todo,index)=><li key={index}><span style={{textDecoration:todo.completed?'line-through':''}} onDoubleClick={()=>this.props.toggle(todo.id)}>{todo.content}</span><button onClick={()=>this.props.delTodo(todo.id)}>-</button></li>)
                     }
                 </ul>
             </div>
