@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
+import {ADD,SUB,COUNTING} from './store/action-types';
 import {bindActionCreators} from 'redux';
 import actions from './store/actions';
 class Counter extends Component{

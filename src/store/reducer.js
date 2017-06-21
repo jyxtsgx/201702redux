@@ -1,10 +1,12 @@
-import {ADD,SUB} from './action-types';
+import {ADD,SUB,COUNTING} from './action-types';
 export default function(state={number:0,status:''},action={}){
     switch(action.type){
         case ADD:
-            return {...state,number:state.number+1};
+            return {number:state.number+1,status:''};
         case SUB:
-            return {...state,number:state.number-1};
+            return {number:state.number-1,status:''};
+        case COUNTING:
+            return {...state,status:'计算中...'};
         default:
             return state;
     }

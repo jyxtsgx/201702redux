@@ -1,5 +1,6 @@
 //应用中间件
 import applyMiddleware from './applyMiddleware';
+//import {applyMiddleware} from 'redux';
 import {createStore} from 'redux';
 import reducer from './reducer';
 //logger中间件 日志中间件
@@ -7,7 +8,7 @@ import reducer from './reducer';
 /*let logger = store=>next=>action=>{
 
 };*/
-let logger = function(store){
+/*let logger = function({dispatch,getState}){
     return function(next){
         return function(action){
             console.log('改变前的状态对象:',store.getState());
@@ -15,7 +16,14 @@ let logger = function(store){
             console.log('改变后的状态对象:',store.getState());
         }
     }
+}*/
+
+let thunk = ({dispatch})=>next=>action=>{
+    if(typeof action == 'function')
+        action(dispatch);
+    else
+        next(action);
 }
 
-let store = applyMiddleware(logger)(createStore)(reducer);
+let store = applyMiddleware(thunk)(createStore)(reducer);
 export default store;
