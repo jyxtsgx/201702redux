@@ -1,12 +1,11 @@
-import {ADD,SUB,COUNTING} from './action-types';
-export default function(state={number:0,status:''},action={}){
-    switch(action.type){
-        case ADD:
-            return {number:state.number+1,status:''};
-        case SUB:
-            return {number:state.number-1,status:''};
-        case COUNTING:
-            return {...state,status:'计算中...'};
+import * as types from './action-types';
+//words里面存放的是联想词
+export default function(state={words:[],status:''},action={}){
+    switch (action.type){
+        case types.FETCH_WORDS:
+            return {...state,status:'加载中'};
+        case types.FETCH_WORDS_SUCCESS:
+            return {status:'',words:action.words};
         default:
             return state;
     }

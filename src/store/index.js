@@ -1,29 +1,9 @@
-//应用中间件
-import applyMiddleware from './applyMiddleware';
-//import {applyMiddleware} from 'redux';
-import {createStore} from 'redux';
+import {createStore,applyMiddleware} from 'redux';
+//thunk函数 是一会延时执行的函数
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 import reducer from './reducer';
-//logger中间件 日志中间件
-//任何中间件的结构都是这样的
-/*let logger = store=>next=>action=>{
+export default applyMiddleware(thunk,logger)(createStore)(reducer);
 
-};*/
-let logger = function({dispatch,getState}){
-    return function(next){
-        return function(action){
-            console.log('改变前的状态对象:',store.getState());
-            next(action);//store.dispatch(action)
-            console.log('改变后的状态对象:',store.getState());
-        }
-    }
-}
-//redux-thunk
-let thunk = ({dispatch})=>next=>action=>{
-    if(typeof action == 'function')
-        action(dispatch);
-    else
-        next(action);
-}
 
-let store = applyMiddleware(thunk,logger)(createStore)(reducer);
-export default store;
+

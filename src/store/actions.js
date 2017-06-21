@@ -1,22 +1,19 @@
-import {ADD,SUB,COUNTING} from './action-types';
+import * as types from './action-types';
+import $ from 'jquery';
 export default {
-    //ActionCreator就是action的创建器，用来创建action
-    //redux中action必须也只能是纯对象plain object
-    //Actions must be plain objects. Use custom middleware for async actions.
-    add(){
-      return function(dispatch){
-         dispatch({type:COUNTING});
-         setTimeout(function(){
-             dispatch({type:ADD});
-         },3000)
-      }
-    },
-    sub(){
+    fetchWords(wd){
         return function(dispatch){
-            dispatch({type:COUNTING});
-            setTimeout(function(){
-                dispatch({type:SUB});
-            },3000)
+            dispatch({type:types.FETCH_WORDS});
+            $.ajax({
+                url:'http://www.baidu.com/su',
+                data:{wd},
+                jsonp:'cb',
+                dataType:'jsonp',
+                context:this,//指定回调函数中的this指针
+                success(result){
+                    dispatch({type:types.FETCH_WORDS_SUCCESS,words:result.s});
+                }
+            })
         }
     }
 }

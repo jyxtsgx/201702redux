@@ -1,5 +1,4 @@
-const ADD = 'ADD';
-const SUB = 'SUB';
-//动作类型 计算中，reducer收到这个action之后，需要把state对象中的status改为计算中...
-const COUNTING = 'COUNTING';
-export {ADD,SUB,COUNTING}
+//开始获取联想词
+export const FETCH_WORDS = 'FETCH_WORDS';
+//获取联想词成功
+export const FETCH_WORDS_SUCCESS = 'FETCH_WORDS_SUCCESS';
