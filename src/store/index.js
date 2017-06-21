@@ -1,5 +1,7 @@
 //应用中间件
 import applyMiddleware from './applyMiddleware';
+import {createStore} from 'redux';
+import reducer from './reducer';
 //logger中间件 日志中间件
 //任何中间件的结构都是这样的
 /*let logger = store=>next=>action=>{
@@ -14,7 +16,6 @@ let logger = function(store){
         }
     }
 }
-import {createStore} from 'redux';
-import reducer from './reducer';
-let store = createStore(reducer);
+
+let store = applyMiddleware(logger)(createStore)(reducer);
 export default store;

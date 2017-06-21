@@ -1,7 +1,7 @@
 export default function (ware){//ware就是中间件
    return function(createStore){//原生的创建仓库
       return function(reducer){
-          let store = createStore();
+          let store = createStore(reducer);
           let dispatch = store.dispatch;
           let wareApi = {
               getState:store.getState,
