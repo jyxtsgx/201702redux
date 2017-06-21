@@ -1,10 +1,10 @@
 import {ADD,SUB} from './action-types';
-export default function(state=0,action={}){
+export default function(state={number:0,status:''},action={}){
     switch(action.type){
         case ADD:
-            return state + 1;
+            return {...state,number:state.number+1};
         case SUB:
-            return state - 1;
+            return {...state,number:state.number-1};
         default:
             return state;
     }
