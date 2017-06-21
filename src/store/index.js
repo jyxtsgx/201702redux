@@ -8,7 +8,7 @@ import reducer from './reducer';
 /*let logger = store=>next=>action=>{
 
 };*/
-/*let logger = function({dispatch,getState}){
+let logger = function({dispatch,getState}){
     return function(next){
         return function(action){
             console.log('改变前的状态对象:',store.getState());
@@ -16,8 +16,8 @@ import reducer from './reducer';
             console.log('改变后的状态对象:',store.getState());
         }
     }
-}*/
-
+}
+//redux-thunk
 let thunk = ({dispatch})=>next=>action=>{
     if(typeof action == 'function')
         action(dispatch);
@@ -25,5 +25,5 @@ let thunk = ({dispatch})=>next=>action=>{
         next(action);
 }
 
-let store = applyMiddleware(thunk)(createStore)(reducer);
+let store = applyMiddleware(thunk,logger)(createStore)(reducer);
 export default store;
